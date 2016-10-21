@@ -58,7 +58,17 @@ exampleOf("toObservable"){
 }
 ```
 
-
+####07:00 subscribeCompleted
+```
+exampleOf("toObservable"){
+  let DisposeBag = DisposeBag()
+ let subscription:Disposable=[1,2,3].toObservable().subscribeCompleted{
+    print("Complated")
+  }
+  
+  subscription.addDisposableTo(disppposeBag)
+}
+```
 
 
 ###2 Work with subjects
@@ -125,19 +135,37 @@ B
 ```
 
 
-
-
-####07:00 subscribeComplated
+###3 Transform observable sequences
+####01:00
 ```
-exampleOf("toObservable"){
-  let DisposeBag = DisposeBag()
- let subscription:Disposable=[1,2,3].toObservable().subscribeCompleted{
-    print("Complated")
-  }
+exampleOf("map"){
+  Observable.of(1,2,3)
+  .map({$0*$0}
+  .subscribeNext{print($0)}
+  .dispose()
+   
   
-  subscription.addDisposableTo(disppposeBag)
 }
 ```
+
+####02:39
+```
+exampleOf("flatMap"){
+  let disposeBag = DisposeBag()
+  struct Player{
+    let score:Variable<Int>
+  }
+  let a = Player(score:Variable(10))
+  let b = Player(score:Variable(20))
+  var player =Variable(a)
+  
+}
+```
+
+
+
+
+
 ##4. Take Things Further
 ###1 Use forward delegates
 ####01:39
